@@ -16,7 +16,7 @@ namespace zich
         Matrix(vector<double>, int, int);
 
         Matrix operator+(const Matrix &a); //
-        Matrix &operator-(const Matrix &a); //
+        Matrix operator-(const Matrix &a); //
         Matrix operator+(double num);
         Matrix &operator-(double num);
         Matrix &operator-(); // unery
@@ -24,8 +24,8 @@ namespace zich
 
         Matrix &operator++(); //
         Matrix &operator--();
-        Matrix &operator++(int);
-        Matrix &operator--(int);
+        Matrix operator++(int);
+        Matrix operator--(int);
 
         Matrix &operator+=(const Matrix &a);
         Matrix &operator-=(const Matrix &a);
@@ -39,6 +39,7 @@ namespace zich
 
         Matrix operator*(const Matrix &a)const;
         Matrix operator*=(const Matrix &a);
+        friend Matrix operator*(double, Matrix &a);
         Matrix operator*=(double);
         Matrix operator*(double) const;
 
