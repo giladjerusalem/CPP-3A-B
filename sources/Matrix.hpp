@@ -47,6 +47,6 @@ namespace zich
         friend ostringstream &operator << (ostringstream &output, Matrix const &a);
         friend istringstream &operator >> (istringstream &input, Matrix &a);
     };
-    Matrix operator*(double, Matrix const &temp);
+    Matrix operator*(double, Matrix const &a);
 
 }

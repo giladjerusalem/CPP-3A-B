@@ -35,7 +35,7 @@ namespace zich
     
     Matrix Matrix::operator+(const Matrix &a)
     {
-        if (mat.size() != a.mat.size() || mat[0].size() != a.mat[0].size())
+        if (mat.size() != a.mat.size() || mat[0].size() != a.mat[0].size()) //i could do function to check it, but i preferred like this.
         {
             throw invalid_argument("Both matrix must have same number of line and col");
         }
@@ -51,7 +51,7 @@ namespace zich
                 z++;
             }
         }
-        Matrix A(arr, mat.size(), mat[0].size()); // put arr in new matrix
+        Matrix A(arr, mat.size(), mat[0].size()); // put arr in new matrix and divivde
         return A;
     }
 
@@ -74,28 +74,28 @@ namespace zich
         return A;
     }
 
-    Matrix Matrix::operator+()
+    Matrix Matrix::operator+()  //working on pointer
     {                                                      // multiply in 1
         vector<double> arr(mat.size() * mat[0].size(), 0); // initial the vector
         size_t i = 0;
         size_t j = 0;
         size_t z = 0;
-        for (size_t i = 0; i < mat.size(); i++)
+        for ( i = 0; i < mat.size(); i++)
         {
-            for (size_t j = 0; j < mat[0].size(); j++)
+            for (j = 0; j < mat[0].size(); j++)
             {
                 arr[z] = mat[i][j] * (1); // multiply in 1 and put in arr
                 z++;
             }
             
         }
-        *this = Matrix(arr, mat.size(), mat[0].size()); // put the informaton in matrix
+        *this = Matrix(arr, mat.size(), mat[0].size()); // put the informaton in matrix and divivde
         return *this;
     }
     
-    Matrix Matrix::operator-(const Matrix &a)
+    Matrix Matrix::operator-(const Matrix &a)   //same like +
     {
-        if (mat.size() != a.mat.size() || mat[0].size() != a.mat[0].size())
+        if (mat.size() != a.mat.size() || mat[0].size() != a.mat[0].size())     //check if length and wide are same
         {
             throw invalid_argument("Both matrix must have same number of line and col");
         }
@@ -112,11 +112,11 @@ namespace zich
             }
            
         }
-        Matrix A(arr, mat.size(), mat[0].size()); // put arr in new matrix
+        Matrix A(arr, mat.size(), mat[0].size()); // put arr in new matrix and divivde
         return A;
     }
 
-    Matrix &Matrix::operator-(double num)
+    Matrix &Matrix::operator-(double num)   //same like +
     {
         vector<double> arr(mat.size() * mat[0].size(), 0); // initial the vector
         size_t i = 0;
@@ -131,7 +131,7 @@ namespace zich
             }
             
         }
-        *this = Matrix(arr, mat.size(), mat[0].size()); // put arr in new matrix
+        *this = Matrix(arr, mat.size(), mat[0].size()); // put arr in new matrix and divivde
         return *this;
     }
 
@@ -141,9 +141,9 @@ namespace zich
         size_t i = 0;
         size_t j = 0;
         size_t z = 0;
-        for (size_t i = 0; i < mat.size(); i++)
+        for ( i = 0; i < mat.size(); i++)
         {
-            for (size_t j = 0; j < mat[0].size(); j++)
+            for (j = 0; j < mat[0].size(); j++)
             {
                 arr[z] = mat[i][j] * (-1); // multiply in -1 and put in arr
                 z++;
@@ -156,7 +156,7 @@ namespace zich
 
     Matrix &Matrix::operator+=(const Matrix &a)
     {
-        if (this->mat.size() != a.mat.size() || this->mat.at(0).size() != a.mat.at(0).size ())
+        if (this->mat.size() != a.mat.size() || this->mat.at(0).size() != a.mat.at(0).size ())  //used this just for being forma
         {
             throw invalid_argument("Both matritions must have same number of lines and col");
         }
@@ -190,9 +190,9 @@ namespace zich
         return *this;
     } 
 
-    Matrix &Matrix::operator++()
-    {                                                      //++num and return Matrix after change
-        vector<double> arr; // initial the vector
+    Matrix &Matrix::operator++()    //++num and return Matrix after change
+    {                                                     
+        vector<double> arr; // initial the vector       -->     different way
         size_t i = 0;
         size_t j = 0;
         for (i = 0; i < mat.size(); i++)
@@ -206,15 +206,15 @@ namespace zich
         return *this;
     }
 
-    Matrix &Matrix::operator--()
-    {                                                      //--num and return Matrix after change
+    Matrix &Matrix::operator--()    //--num and return Matrix after change
+    {                                                      
         vector<double> arr(mat.size() * mat[0].size(), 0); // initial the vector
         size_t i = 0;
         size_t j = 0;
         size_t z = 0;
-        for (size_t i = 0; i < mat.size(); i++)
+        for ( i = 0; i < mat.size(); i++)
         {
-            for (size_t j = 0; j < mat[0].size(); j++)
+            for (j = 0; j < mat[0].size(); j++)
             {
                 arr[z] = mat[i][j] - 1; // put in arr the number in mat and add 1
                 z++;
@@ -225,9 +225,9 @@ namespace zich
         return *this;
     }
 
-    Matrix Matrix::operator++(int)
+    Matrix Matrix::operator++(int)  //return matrix before-copy
     {              
-        vector<double> copy;
+        vector<double> copy;    //initial vector copy stuiped way but i tried to see if working
         size_t rows = mat.size();    
         size_t cols = mat.at(0).size();  
         size_t i = 0;
@@ -239,12 +239,12 @@ namespace zich
                 copy.push_back(mat.at(i).at(j));
             }
         }
-        // num-- and return Matrix before change
+        // num++ and return Matrix before change
         vector<double> arr(mat.size() * mat[0].size(), 0); // initial the vector  
         size_t z = 0;
-        for (size_t i = 0; i < rows; i++)
+        for ( i = 0; i < rows; i++)
         {
-            for (size_t j = 0; j < cols; j++)
+            for (j = 0; j < cols; j++)
             {
                 arr[z] = mat[i][j]+1; // put in arr the original values of mat  
                 z++;
@@ -252,7 +252,7 @@ namespace zich
           
         }
     *this = Matrix(arr, rows, cols); // put the original values in matrix and return
-    return Matrix(copy, rows, cols);
+    return Matrix(copy, rows, cols);    //return the copy vector in matrix
     }
 
     Matrix Matrix::operator--(int)
@@ -335,7 +335,7 @@ namespace zich
         {
             for (j = 0; j < mat.at(0).size(); j++)
             {
-                if (this->mat.at(i).at(j) != a.mat.at(i).at(j))
+                if (this->mat.at(i).at(j) != a.mat.at(i).at(j))     //if one cell != then false
                 {
                     flag = false;
                     return flag;
@@ -346,7 +346,7 @@ namespace zich
     }
 
 
-    bool Matrix::operator!=(const Matrix &a) const
+    bool Matrix::operator!=(const Matrix &a) const  //used operator == I like this one
     {
         return !(*this == a);
     }
@@ -482,8 +482,8 @@ namespace zich
         return res;
     }
 
-    Matrix Matrix::operator*=(const Matrix &a) 
-    {                                      // change the matrix
+    Matrix Matrix::operator*=(const Matrix &a)  // change the matrix
+    {                                     
         if (mat[0].size() != a.mat.size()) // if the mat-col != from a.mat-line its not possible to multyply.
         {
             throw invalid_argument("The col of the left mat must be equal to the line of right mat -> for example: 3x2 2x3");
@@ -515,7 +515,11 @@ namespace zich
        return a*num;
     }
     
-    ostringstream &operator << (ostringstream &output, Matrix const &a) // output the matrix -->supposed to work
+    ostringstream &operator << (ostringstream &output, Matrix const &a) // output the matrix //   can access private and protected members of other class, run over std
+//cout << a << endl;
+//   prints [1 0 0]
+//          [0 1 0]
+//          [0 0 1]
     {
         size_t i=0;
         size_t j=0;
@@ -608,7 +612,7 @@ namespace zich
                 continue;
             }
             str += string(1, ch); // get the char and convert to string
-        }
+        }   //close while
         a = Matrix(arr, row, first_row);
         return input;
     }
